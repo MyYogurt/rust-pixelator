@@ -61,4 +61,15 @@ fn main() {
         }
     }
 
+    let (width, height) = match imagesize::size(path) {
+        Ok(dim) => (dim.width, dim.height),
+        Err(_) => {
+            println!("Error reading file, aborting...");
+            std::process::exit(1);
+        }
+    };
+
+    let vec: Vec<usize> = pixelate::find_possible_block_counts(width, height);
+    let block_size = vec[vec.len()/4];
+    pixelate::pixelate_image(path, output_path, block_size);
 }
