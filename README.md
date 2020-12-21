@@ -9,4 +9,4 @@ cargo build --release
 
 ## Usage
 
-rust-pixelator <path to input image> <desired output path>
+rust-pixelator \<path to input image\> \<desired output path\>
