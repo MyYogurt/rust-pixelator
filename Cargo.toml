@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 clap = "2.33.0"
 image = "0.23.12"
+imagesize = "0.8.8"

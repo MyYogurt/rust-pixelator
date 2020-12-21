@@ -14,7 +14,7 @@ impl CustomPixel {
 }
 
 pub fn pixelate_image(path: &str, output: &str, block_count: usize) {
-    let start = std::time::Instant::now();
+    // let start = std::time::Instant::now();
     let image = image::open(path).unwrap().into_rgba8();
     let width = image.width() as usize;
     let height = image.height() as usize;
@@ -65,8 +65,8 @@ pub fn pixelate_image(path: &str, output: &str, block_count: usize) {
             counter += 1;
         }
     }
-    let end = start.elapsed();
-    println!("Time: {}", end.as_millis());
+    // let end = start.elapsed();
+    // println!("Time: {}", end.as_millis());
     pixelated_image_buffer.save(output).unwrap();
 }
 
@@ -74,7 +74,12 @@ fn verify_block_count(width: usize, height: usize, block_count: usize) -> bool {
     return width % block_count == 0 && height % block_count == 0;
 }
 
-fn find_possible_block_counts(width: usize, height: usize, block_count: usize) -> Vec<usize> {
+pub fn find_possible_block_counts(width: usize, height: usize) -> Vec<usize> {
     let mut values: Vec<usize> = Vec::new();
-    let inc = if width % 2 == 0 { }
+    for counter in 1..width {
+        if width % counter == 0 && height % counter == 0 {
+            values.push(counter);
+        }
+    }
+    values
 }
