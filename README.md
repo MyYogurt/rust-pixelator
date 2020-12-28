@@ -13,4 +13,4 @@ rust-pixelator \<path to input image\> \<desired output path\>
 
 ## Example Output
 
-![Boris Johnson](bojo.png) ![Pixelated Boris Johnson](pixelated.png)
+![Boris Johnson](images/bojo.png) ![Pixelated Boris Johnson](images/pixelated.png)
