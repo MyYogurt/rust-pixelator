@@ -1,5 +1,5 @@
 # rust-pixelator
-A rust program that pixelates images
+A rust program that pixelates images. Currently only works with PNG images in testing.
 
 ## Build
 
