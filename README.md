@@ -17,4 +17,4 @@ Clone repository
 
 ## Example Output
 
-![Boris Johnson](images/bojo.png) ![Pixelated Boris Johnson](images/pixelated.png)
+![Boris Johnson](images/boris%20johnson.png) ![Pixelated Boris Johnson](images/pixelated.png)
