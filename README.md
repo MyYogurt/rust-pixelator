@@ -5,11 +5,15 @@ A rust program that pixelates images
 
 Clone repository
 
-cargo build --release
+`git clone https://github.com/MyYogurt/rust-pixelator.git`
+
+`cd rust-pixelator`
+
+`cargo build --release`
 
 ## Usage
 
-rust-pixelator \<path to input image\> \<desired output path\>
+`rust-pixelator \<path to input image\> \<desired output path\>`
 
 ## Example Output
 
