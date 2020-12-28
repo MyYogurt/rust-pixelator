@@ -13,7 +13,7 @@ fn main() {
             .index(1)
             .help("Input file path"))
         .arg(Arg::with_name("output")
-            .required(true)
+            .required(false)
             .takes_value(true)
             .index(2)
             .help("Output file path"))
@@ -30,7 +30,6 @@ fn main() {
         .get_matches();
 
     let path: &str = matches.value_of("input").unwrap();
-    let output_path: &str = matches.value_of("output").unwrap();
 
     if matches.is_present("list") {
         let (width, height) = match imagesize::size(path) {
@@ -48,28 +47,31 @@ fn main() {
         std::process::exit(0);
     }
 
-
-
-    if let Some(num) = matches.value_of("block count") {
-        let number = num.parse::<usize>();
-        match number {
-            Ok(res) => {
-                pixelate::pixelate_image(path, output_path, res);
-                std::process::exit(0);
-            },
-            Err(_) => println!("Invalid block count argument, choosing block count automatically"),
+    if let Some(output) = matches.value_of("output") {
+        if let Some(num) = matches.value_of("block count") {
+            let number = num.parse::<usize>();
+            match number {
+                Ok(res) => {
+                    pixelate::pixelate_image(path, output, res);
+                    std::process::exit(0);
+                },
+                Err(_) => println!("Invalid block count argument, choosing block count automatically"),
+            }
         }
+
+        let (width, height) = match imagesize::size(path) {
+            Ok(dim) => (dim.width, dim.height),
+            Err(_) => {
+                println!("Error reading file, aborting...");
+                std::process::exit(1);
+            }
+        };
+
+        let vec: Vec<usize> = pixelate::find_possible_block_counts(width, height);
+        let block_size = vec[vec.len()/4];
+        pixelate::pixelate_image(path, output, block_size);
+    } else {
+        println!("No output path provided, exiting...");
+        std::process::exit(1);
     }
-
-    let (width, height) = match imagesize::size(path) {
-        Ok(dim) => (dim.width, dim.height),
-        Err(_) => {
-            println!("Error reading file, aborting...");
-            std::process::exit(1);
-        }
-    };
-
-    let vec: Vec<usize> = pixelate::find_possible_block_counts(width, height);
-    let block_size = vec[vec.len()/4];
-    pixelate::pixelate_image(path, output_path, block_size);
 }

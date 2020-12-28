@@ -14,7 +14,6 @@ impl CustomPixel {
 }
 
 pub fn pixelate_image(path: &str, output: &str, block_count: usize) {
-    // let start = std::time::Instant::now();
     let image = image::open(path).unwrap().into_rgba8();
     let width = image.width() as usize;
     let height = image.height() as usize;
@@ -65,8 +64,6 @@ pub fn pixelate_image(path: &str, output: &str, block_count: usize) {
             counter += 1;
         }
     }
-    // let end = start.elapsed();
-    // println!("Time: {}", end.as_millis());
     pixelated_image_buffer.save(output).unwrap();
 }
 
