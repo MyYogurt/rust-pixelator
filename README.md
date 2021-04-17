@@ -14,7 +14,3 @@ Clone repository
 ## Usage
 
 `rust-pixelator <path to input image> <desired output path>`
-
-## Example Output
-
-![Boris Johnson](images/boris%20johnson.png) ![Pixelated Boris Johnson](images/pixelated.png)
